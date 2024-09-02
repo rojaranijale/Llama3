@@ -1,0 +1,8 @@
+sentence-transformers
+chromadb
+langchain-community
+unstructured
+openpyxl
+langchain_huggingface
+pandas
+streamlit
