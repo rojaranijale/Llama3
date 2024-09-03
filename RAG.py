@@ -25,7 +25,7 @@ text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=15
 docs = text_splitter.split_documents(docs)
 
 modelPath = "mixedbread-ai/mxbai-embed-large-v1"
-model_kwargs = {'device':'cuda'}
+model_kwargs = {'device':'cpu'}
 encode_kwargs = {'normalize_embeddings': True}
 embeddings = HuggingFaceEmbeddings(
     model_name=modelPath,
