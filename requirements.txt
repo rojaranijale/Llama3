@@ -6,3 +6,4 @@ openpyxl
 langchain_huggingface
 pandas
 streamlit
+pysqlite3-binary
