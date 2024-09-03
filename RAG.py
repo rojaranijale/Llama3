@@ -3,10 +3,10 @@ import streamlit as st
 from huggingface_hub import login
 from langchain import PromptTemplate
 from langchain.chains import RetrievalQA
-from langchain.vectorstores import Chroma
+from langchain_community.vectorstores import Chroma
 from langchain import HuggingFacePipeline
 from langchain_huggingface import HuggingFaceEmbeddings
-from langchain.vectorstores import utils as chromautils
+from langchain_community.vectorstores import utils as chromautils
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.document_loaders import UnstructuredExcelLoader
 from langchain_community.llms.huggingface_pipeline import HuggingFacePipeline
