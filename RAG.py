@@ -69,6 +69,15 @@ retrievalQA = RetrievalQA.from_chain_type(
     chain_type_kwargs={"prompt": PROMPT}
 )
 
+st.markdown(
+    """
+    <h1 style='font-size:25px;'>
+    Car Parts User Recommendation System (Powered by Meta Llama3)
+    </h1>
+    """,
+    unsafe_allow_html=True
+)
+
 if prompt := st.chat_input():
     st.session_state.messages.append({"role": "user", "content": prompt})
     st.chat_message("user").write(prompt)
