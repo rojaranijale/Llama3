@@ -1,10 +1,9 @@
-__import__('pysqlite3')
-import sys
-sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 import os
+from dotenv import load_dotenv
 import streamlit as st
 from huggingface_hub import login
-from langchain import PromptTemplate
+from huggingface_hub import InferenceApi
+from langchain_core.prompts import PromptTemplate
 from langchain.chains import RetrievalQA
 from langchain_community.vectorstores import Chroma
 from langchain import HuggingFacePipeline
@@ -14,7 +13,7 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.document_loaders import UnstructuredExcelLoader
 from langchain_community.llms.huggingface_pipeline import HuggingFacePipeline
 from langchain_community.callbacks.streamlit import StreamlitCallbackHandler
-
+load_dotenv()
 token = os.getenv("HUGGINGFACE_TOKEN")
 model_id = "meta-llama/Meta-Llama-3-8B-Instruct"
 login(token=token)
@@ -54,13 +53,8 @@ Helpful Answer:
 PROMPT = PromptTemplate(
  template=prompt_template, input_variables=["context", "question"]
 )
-
-llm = HuggingFacePipeline.from_model_id(
-    model_id=model_id,
-    task="text-generation",
-    pipeline_kwargs={"temperature": 0.1, "max_new_tokens": 300},
-    device = 0 
-)
+inference_api = InferenceApi(repo_id="distilbert-base-uncased-finetuned-sst-2-english")
+llm = HuggingFacePipeline(pipeline=inference_api)
 
 st_callback = StreamlitCallbackHandler(st.container())
 
@@ -70,15 +64,6 @@ retrievalQA = RetrievalQA.from_chain_type(
     retriever=retriever,
     return_source_documents=True,
     chain_type_kwargs={"prompt": PROMPT}
-)
-
-st.markdown(
-    """
-    <h1 style='font-size:25px;'>
-    Car Parts User Recommendation System (Powered by Meta Llama3)
-    </h1>
-    """,
-    unsafe_allow_html=True
 )
 
 if prompt := st.chat_input():
