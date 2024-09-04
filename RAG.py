@@ -14,6 +14,7 @@ from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_community.vectorstores import utils as chromautils
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.document_loaders import UnstructuredExcelLoader
+from langchain_community.document_loaders import TextLoader
 from langchain_community.llms.huggingface_pipeline import HuggingFacePipeline
 from langchain_community.callbacks.streamlit import StreamlitCallbackHandler
 load_dotenv()
@@ -21,7 +22,7 @@ token = os.getenv("HUGGINGFACE_TOKEN")
 model_id = "meta-llama/Meta-Llama-3-8B-Instruct"
 login(token=token)
 
-loader = UnstructuredExcelLoader("All_ScrapedText_03_06.xlsx")
+loader = TextLoader("All_ScrapedText_03_06.txt")
 docs = loader.load()
 docs = chromautils.filter_complex_metadata(docs)
 
