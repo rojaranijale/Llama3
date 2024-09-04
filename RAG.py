@@ -9,7 +9,7 @@ from huggingface_hub import InferenceApi
 from langchain_core.prompts import PromptTemplate
 from langchain.chains import RetrievalQA
 from langchain_community.vectorstores import Chroma
-from langchain import HuggingFacePipeline
+#from langchain import HuggingFacePipeline
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_community.vectorstores import utils as chromautils
 from langchain.text_splitter import RecursiveCharacterTextSplitter
