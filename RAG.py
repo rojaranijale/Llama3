@@ -22,7 +22,7 @@ token = os.getenv("HUGGINGFACE_TOKEN")
 model_id = "meta-llama/Meta-Llama-3-8B-Instruct"
 login(token=token)
 
-loader = TextLoader("All_ScrapedText_03_06.txt")
+loader = UnstructuredExcelLoader("All_ScrapedText_03_06.xlsx")
 docs = loader.load()
 docs = chromautils.filter_complex_metadata(docs)
 
