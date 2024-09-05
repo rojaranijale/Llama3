@@ -57,7 +57,7 @@ Helpful Answer:
 PROMPT = PromptTemplate(
  template=prompt_template, input_variables=["context", "question"]
 )
-inference_api = InferenceApi(repo_id="distilbert-base-uncased-finetuned-sst-2-english")
+inference_api = InferenceApi(repo_id="meta-llama/Meta-Llama-3-8B-Instruct")
 llm = HuggingFacePipeline(pipeline=inference_api)
 
 st_callback = StreamlitCallbackHandler(st.container())
