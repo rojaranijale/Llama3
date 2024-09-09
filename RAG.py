@@ -19,7 +19,9 @@ from langchain_community.llms.huggingface_pipeline import HuggingFacePipeline
 from langchain_community.callbacks.streamlit import StreamlitCallbackHandler
 load_dotenv()
 token = os.getenv("HUGGINGFACE_TOKEN")
-model_id = "meta-llama/Meta-Llama-3-8B-Instruct"
+#model_id = "meta-llama/Meta-Llama-3-8B-Instruct"
+model_id = "meta-llama/Meta-Llama-3-8B-16K-GGUF"
+
 login(token=token)
 
 loader = UnstructuredExcelLoader("Data_6sept.xlsx")
